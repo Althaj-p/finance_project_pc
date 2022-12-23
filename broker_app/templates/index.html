@@ -1,0 +1,38 @@
+{% include 'sidebar3.html' %}
+<h1 class="font-weight-bold text-dark "style="margin-left:300px;margin-top:3%">Dashboard</h1>
+<div style="width:80%;margin-top: 3%;">
+    <canvas id="myChart"style="margin-left:300px;height: 100px;"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        datasets: [{
+          label: 'Expenses',
+          data: {{debit_list}},
+          borderWidth: 1
+        },{
+          label: 'Income',
+          data: {{credit_list}},
+          borderWidth: 0.5
+        }]
+      },
+      options: {
+        scales: {
+          x:{
+            labels:{{month_list|safe}},
+          },
+          x2:{
+            labels:{{year_list|safe}},
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>

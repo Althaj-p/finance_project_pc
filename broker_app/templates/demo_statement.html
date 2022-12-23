@@ -1,0 +1,88 @@
+{% include 'sidebar3.html' %}
+<body class="bg-light">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"style="margin-left:420px;width:60%" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+        
+        <div style="margin-left:420px;width:60%;border-radius: 20px;"class="bg-white shadow-lg p-5">
+        <table style="width:100%;"class=" table mt-5 table-bordered">
+            <form method="post"class="form-control font-weight-bold p-5">
+                {% csrf_token %}
+                <h2>Account Statement</h2><hr>
+                <div class="row font-weight-bold">
+                    <div class="col-6">
+                        <label>From</label>
+                        <input type="date"value="{{from}}"class="form-control"name="from_date"required>
+                    </div>
+                    <div class="col-6">
+                        <label>To</label>
+                        <input type="date"value="{{to}}"class="form-control"name="to_date"required>    
+                    </div>
+                </div>
+                <div class="row font-weight-bold">
+                    <div class="col-6">
+                        <label>Investor</label>
+                        <select name="investor_name"class="form-control">
+                            {% for i in data %}
+                            <option value="{{i.name}}"{% if i.name == investor %} selected="selected"{% endif %}>{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <input type="submit"class="form-control btn btn-success"style="margin-top:30px">
+                    </div>
+                </div>
+            </form>
+            <thead class="font-weight-bold">
+                <tr>
+                    <td>Date</td>
+                    <td>Particular</td>
+                    <td>Credit</td>
+                    <td>Debit</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" class="font-weight-bold">Opening balance</td>
+                    {% if opening_balance >= 0 %}
+                    <td class="font-weight-bold"><i class="fa fa-inr" aria-hidden="true"></i> {{opening_balance}}</td>
+                    <td></td>
+                    {% else %}
+                    <td></td>
+                    <td class="font-weight-bold"><i class="fa fa-inr" aria-hidden="true"></i> {{opening_balance}}</td>
+                    {% endif %}
+                    <!-- <td class="font-weight-bold"><i class="fa fa-inr" aria-hidden="true"></i> {{opening_balance}}</td> -->
+                </tr>
+                {% for i in new_data %}
+                <tr>
+                    <td>{{i.date_added}}</td>
+                    <td>{{i.description}}</td>
+                    {% ifequal i.description "Debit" %}
+                    <td></td>
+                    <td>{{i.amount}}</td>
+                    {% else %}
+                    <td>{{i.amount}}</td>
+                    <td></td>
+                    {% endifequal %}
+                </tr>
+                {% endfor %}
+                <tr class="font-weight-bold">
+                    <td colspan="2">Balance</td>
+                    {% if result >= 0 %}
+                    <td ><i class="fa fa-inr" aria-hidden="true"></i> {{result}}</td>
+                    <td></td>
+                    {% else %}
+                    <td></td>
+                    <td><i class="fa fa-inr" aria-hidden="true"></i> {{result}}</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- </div> -->
+</body>

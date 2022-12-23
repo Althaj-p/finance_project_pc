@@ -1,0 +1,34 @@
+{% include 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="bg-light">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"style="margin-left:36%;width:25%" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+
+    <form method="post"class="form text-center border  shadow-lg text-dark bg-white p-5"style="width:25%;height:350px;margin-left:36%;margin-top:13%;padding: 20px;border-radius:5%;box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2),0 16px 20px 0 rgba(0, 0, 0, 0.19);">
+        {% csrf_token %}
+        <h2 class="">Login Form</h2><hr style="color:aliceblue">
+        <input type="text" class="form-control"placeholder="Enter User name here" name="uname"style="border: 2px solid" required><br>
+        <input type="password"class="form-control" placeholder="Enter password here" name="pwd"style="border: 2px solid"required><br>
+        <input type="submit" value="Login"class=" btn btn-primary w-100 font-weight-bold">
+    </form>
+</body>
+</html>
+<!-- {% ifequal error "yes" %}
+<script>
+    window.alert('Invalid credentials !!!!')
+</script>
+{% endifequal %} -->

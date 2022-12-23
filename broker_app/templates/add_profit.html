@@ -1,0 +1,28 @@
+{% include 'sidebar3.html' %}
+<body class="bg-light"></body>
+<div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"style="margin-left:200px;width:80%" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    <form method="post"style="width:80%;margin-left:200px;margin-top:60px;border-radius:15px"class="form border p-5 text-dark shadow-lg font-weight-bold bg-white">
+        {% csrf_token %}
+        <h2>Add Profit</h2><hr>
+            <label class="mt-2">Date</label>
+            <input type="date"class="form-control"name="date"style="width:100%;border: 2px solid"required>
+            <label class="mt-2">Project</label>
+            <select id="#" class="form-control" name="project"style="width:100%;border: 2px solid"required>
+                <option></option>
+                {% for i in data %}
+                <option value="{{i.name}}"selected>{{i.name}}</option>
+                {% endfor %}
+            </select>
+            <label class="mt-2">Amount</label>
+            <input type="number"class="form-control"name="amount"style="border: 2px solid"required>
+        <input type="submit"class="mt-4 btn btn-success">
+    </form>
+</div>

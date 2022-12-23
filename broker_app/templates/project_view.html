@@ -1,0 +1,27 @@
+{% include 'sidebar3.html' %}
+<body class="bg-light">
+        <div class="container">
+            <table class=" table  shadow shadow-lg mt-4 bg-white text-dark table-hover font-weight-bold"style="width:80%;margin-left:200px;border-radius:10px">
+                <h2 class=" mt-2"style="margin-left:200px">{{name}}</h2>
+                <thead style="border-bottom: 2px solid;font-size: larger">
+                    <tr>
+                        <td>Investors</td>
+                        <td>Share</td>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{i.investor_name.name}}</td>
+                        <td>{{i.share}} %</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+</body>

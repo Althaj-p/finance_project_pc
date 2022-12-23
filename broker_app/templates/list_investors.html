@@ -1,0 +1,20 @@
+{% include 'sidebar3.html' %}
+<body>
+        <table class="container table border shadow shadow-lg text-dark table-hover mt-3 p-5 "style="width:60%;margin-left:400px;border-radius:10px">
+            <h2 class=" container text-dark"style="margin-left:386px">Investors List</h2>
+            <thead class="font-weight-bold"style="font-size:20px;border-bottom:2px solid;text-align:left">
+                <tr>
+                    <td style="width:50%">#</td>
+                    <td style="width:50%">Name</td>
+                </tr>
+            </thead>
+            <tbody class="font-weight-bold">
+                {% for i in data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td >{{i.name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>

@@ -1,0 +1,45 @@
+{% include 'sidebar3.html' %}
+<body class="bg-light">
+<div class="container">
+    <table class=" table border shadow shadow-lg mt-4 table-hover text-dark "style="width:90%;margin-left:150px;border-radius:10px">
+        <h2 class=" mt-4"style="margin-left:150px">View Profits</h2>
+        <thead style="font-weight:bold;border-bottom: 2px solid;font-size: larger">
+            <tr>
+                <td>Date</td>
+                <td>Project</td>
+                <td>Amount</td>
+            </tr>
+        </thead>
+        <tbody class="font-weight-bold">
+            {% for i in page_obj %}
+            <tr>
+                <td>{{i.date_added}}</td>
+                <td>{{i.projects}}</td>
+                <td>{{i.amount}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center text-center ml-5">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+          <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          </li>
+          {% endif %}
+        {% for i in num %}
+        <li class="page-item"><a class="page-link"href="?page={{forloop.counter}}">{{forloop.counter}}</li></a>
+        {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link"href="?page={{ page_obj.next_page_number }}">next</a>
+          <li class="page-item"><a class="page-link"href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+          {% endif %}
+         
+  </ul>
+      </nav>
+
+</div>
+</body>

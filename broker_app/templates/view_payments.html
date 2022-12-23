@@ -1,0 +1,51 @@
+{% include 'sidebar3.html' %}
+<body class="bg-light">
+<div class="container">
+    <table class=" table  shadow shadow-lg mt-4 bg-white text-dark table-hover font-weight-bold"style="width:90%;margin-left:150px;border-radius:10px">
+        <h2 class=" mt-4"style="margin-left:150px">Payments</h2>
+        {% if page_obj is None %}
+        <h2 style="margin-top:200px" class="text-dark">No payments</h2>
+        {% else %}
+        <thead style="border-bottom:2px solid;border-radius: 20px;font-size: larger;">
+            <tr>
+                <td>Date</td>
+                <td>Investor</td>
+                <td>Amount</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in page_obj %}
+            <tr>            
+                <td>{{i.date_added}}</td>
+                <td>{{i.investor}}</td>
+                {% ifequal i.description "Debit" %}
+                <td>- {{i.amount}}</td>
+                {% else %}
+                <td>+ {{i.amount}}</td>
+                {% endifequal %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center text-center ml-5">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+          <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          </li>
+          {% endif %}
+        {% for i in num %}
+        <li class="page-item"><a class="page-link"href="?page={{forloop.counter}}">{{forloop.counter}}</li></a>
+        {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link"href="?page={{ page_obj.next_page_number }}">next</a>
+          <li class="page-item"><a class="page-link"href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+          {% endif %}
+         
+  </ul>
+      </nav>
+      {% endif %}
+
+</div>
+</body>
