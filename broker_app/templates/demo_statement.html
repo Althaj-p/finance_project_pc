@@ -62,13 +62,13 @@
                 <tr>
                     <td>{{i.date_added}}</td>
                     <td>{{i.description}}</td>
-                    {% ifequal i.description "Debit" %}
+                    {% if i.description == "Debit" %}
                     <td></td>
                     <td>{{i.amount}}</td>
                     {% else %}
                     <td>{{i.amount}}</td>
                     <td></td>
-                    {% endifequal %}
+                    {% endif %}
                 </tr>
                 {% endfor %}
                 <tr class="font-weight-bold">

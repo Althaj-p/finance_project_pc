@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6br28wl2qccm4_w+19&ofcv64^0#!)ujfw%dd!tng@@dq26ok*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','143.110.249.48','Test.9pc.in']
 
 
 # Application definition
@@ -82,6 +82,8 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'1234',
         'HOST':'localhost',
+        'PORT':'5432',
+
     }
 }
 
@@ -132,3 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR:'danger'
 }
+CSRF_TRUSTED_ORIGINS = [
+    'https://test.9pc.in',
+]

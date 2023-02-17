@@ -13,11 +13,11 @@
             {% csrf_token %}
             <h2 class="">Add Investor</h1><hr style="height:2px;border-width:0;background-color:black">
             <label class="font-weight-bold mt-3">Name</label><br>
-            {% ifequal error "yes" %}
+            {% if error == "yes" %}
             <input id="inp" value="{{name}}"type="text"class="form-control mt-2"name="name"placeholder="Enter a investor name"style="border: 2px solid"required><br>
             {% else %}
             <input id="inp" type="text"class="form-control mt-2"name="name"placeholder="Enter a investor name"style="border: 2px solid"required><br>
-            {% endifequal %}
+            {% endif %}
             <input type="submit"value="Add"class="btn btn-success btn-lg mt-2">
         </form>
 </body>
